@@ -107,6 +107,7 @@ public class Sessao {
 	}
 
 	public boolean podeReservar(Integer numeroDeIngressos) {
+		if (numeroDeIngressos <= 0) throw new IllegalArgumentException();
 		int sobraram = getIngressosDisponiveis() - numeroDeIngressos;
         boolean naoTemEspaco = sobraram < 0;
 
