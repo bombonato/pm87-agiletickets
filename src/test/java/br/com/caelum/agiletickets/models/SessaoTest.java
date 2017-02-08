@@ -5,24 +5,18 @@ import org.junit.Test;
 
 public class SessaoTest {
 
+	// Ingresso Disponível > Reserva Solicitadas
 	@Test
-	public void deveVender1ingressoSeHa2vagas() throws Exception {
+	public void deveVenderIgressosSeHaVagasDisponiveis() throws Exception {
 		Sessao sessao = new Sessao();
         sessao.setTotalIngressos(2);
 
         Assert.assertTrue(sessao.podeReservar(1));
 	}
-	
-	@Test
-	public void deveVender5ingressosSeHa10vagas() throws Exception {
-		Sessao sessao = new Sessao();
-		sessao.setTotalIngressos(10);
-		
-		Assert.assertTrue(sessao.podeReservar(5));
-	}
 
+	// Ingresso Disponivel < Reserva Solicitada
 	@Test
-	public void naoDeveVender3ingressoSeHa2vagas() throws Exception {
+	public void naoDeveVenderMaisIngressosSeNaoHaVagas() throws Exception {
 		Sessao sessao = new Sessao();
 		sessao.setTotalIngressos(2);
 
@@ -38,8 +32,9 @@ public class SessaoTest {
 		Assert.assertEquals(2, sessao.getIngressosDisponiveis().intValue());
 	}
 	
+	// Ingresso Disponivel = Reserva Solicitada
 	@Test
-	public void deveVender2IngressosSeHa2Vagas(){
+	public void deveVenderTodosIngressosSeHaVagasDisponiveis(){
 		Sessao sessao = new Sessao();
 		sessao.setTotalIngressos(2);
 		
