@@ -1,0 +1,64 @@
+bugs
+- wack-
+- heisenbug (princípio da incerteza, de vez enquando aparece)
+
+Modelos de Desenvolvimenot
+- RUP, gráfico das baleias, burocrático, custo alto
+	- OpenUP, verção enxuta, filosofia ágil
+
+Agilidade != Rapidez
+- reagir rápido
+- mudar de direção
+
+Valores
+=======
+Indivíduos e Integração > Processos e Ferramentas
+Softwares funcionando > documentação abrangente
+Colaboração com Cliente > Negociação de contrato
+Responder as mudaças > Seguir um plano
+
+Ritmo sustentável
+- Ciclos de desenvolvimento =(seria)=> sprint (do Scrum)
+
+ciclos:
+- decidir o que será feito
+- fazer
+- revisar o que foi entregado
+
+Iterativo = ser em cliclos
+Incremental = ter/entregar algo útil/de valor para o cliente
+
+Kanban
+- Alisson Vale
+- Treinamento on-line de Software Zen
+- é mais que o quadro, é uma metodologia
+
+Scrum
+- scrumguides.org - mudam os textos nos anos
+- scrumbut (faço tal coisa, mas...)
+- Pilares:
+	- transparência (se não vai conseguir entregar, se está com bug)
+	- inspeção
+	- adaptação (ver o que esta acontecendo e mudar)
+
+XP Valores
+- simplicidade (fazer o que precisa
+- comunicação (cliente presente, 
+- feedback
+- coragem (para mudar, para enfrentar, de corrigir, etc)
+- respeito (não coloar para trabalhar 16h/dia, propriedade coletiva de código, etc)
+
+bit.ly/pm87-praticas-ageis
+
+
+public class VendaDao {
+	public List<Venda> relatorio(int mes){
+		return entityManger.createQuery("select v from Venda full outer join fetch v.produtos P where v.id != null and v.id != p.id").getResultList();
+
+Análises
+- "mes" não esta sendo usado
+- nome do método não identifica para que
+- comparando id
+
+filtrar por categoria do produto
+

@@ -2,6 +2,8 @@ package br.com.caelum.agiletickets.models;
 
 import static com.google.common.collect.Lists.newArrayList;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -13,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import org.joda.time.Days;
 import org.joda.time.LocalDate;
 import org.joda.time.LocalTime;
 
@@ -98,7 +101,26 @@ public class Espetaculo {
      */
 	public List<Sessao> criaSessoes(LocalDate inicio, LocalDate fim, LocalTime horario, Periodicidade periodicidade) {
 		// ALUNO: Não apague esse metodo. Esse sim será usado no futuro! ;)
-		return null;
+		//return null;
+		final ArrayList<Sessao> lista = new ArrayList<Sessao>();
+		if (inicio.isBefore(fim)) {
+			int i = 0;
+			for (i=0;i<= Days.daysBetween(inicio, fim).getDays();i++){
+				
+				Sessao sessao = new Sessao();
+				sessao.setInicio(inicio.toDateTime(horario));
+				sessao.setEspetaculo(this);
+				sessao.setTotalIngressos(100);
+				sessao.setDuracaoEmMinutos(60);
+				sessao.setPreco(BigDecimal.valueOf(99.90));			
+				
+				lista.add(sessao);	
+	
+			}
+		
+		}
+		
+		return lista;
 	}
 	
 	public boolean Vagas(int qtd, int min)

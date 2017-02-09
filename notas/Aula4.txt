@@ -1,0 +1,26 @@
+http://blog.caelum.com.br/testes-de-mutantes/
+
+Teste de Mutante (Teste de Testes)
+- gera um bug no seu código
+- manipula o bytecode (mutante)
+- o esperado é que seus testes falhem
+- Roda os testes
+	- se falhou: mutante morreu (coisa boa)
+	- se não falhou: mutante sobreviveu (coisa ruim)
+	- gera a % dos que morrerão (a idéia é chegar a 100%)
+- é meio demorado, não para rodar toda hora
+- Eclipse: pitclipse
+- Pegar a pasta de testes, Run as.. Pit Mutation Test
+pittest.org
+- tem integração com sonarqube
+
+SonarQube
+https://www.sonarqube.org/
+- cobertura
+- complexidade cilomática
+- acoplamento eferente
+
+
+PMD - verificar convenções (tem também ferramenta LINT)
+FindBugs - tenta achar padrões de erro
+

@@ -3,6 +3,11 @@ package br.com.caelum.agiletickets.models;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.util.List;
+
+import org.joda.time.LocalDate;
+import org.joda.time.LocalTime;
+import org.junit.Assert;
 import org.junit.Test;
 
 public class EspetaculoTest {
@@ -73,6 +78,77 @@ public class EspetaculoTest {
 		assertFalse(ivete.Vagas(5, 3));
 	}
 
+	@Test
+	public void deveCriarUmaUnicaSessaoQuandoInicioIgualAFim() {
+		// Arrange
+		Espetaculo espetaculo = new Espetaculo();
+		LocalDate inicio = new LocalDate(2017, 2, 9);
+		LocalDate fim = inicio;
+		LocalTime horario = new LocalTime(21, 0);
+		Periodicidade periodicidade = Periodicidade.DIARIA;
+
+		// Act
+		List<Sessao> sessoes = espetaculo.criaSessoes(inicio, fim, horario,
+				periodicidade);
+
+		// Assert
+		Assert.assertNotNull("A lista de sessoes nao deve ser nula", sessoes);
+		Assert.assertEquals(1, sessoes.size());
+
+		Sessao unica = sessoes.get(0);
+		Assert.assertEquals(espetaculo, unica.getEspetaculo());
+		Assert.assertEquals("09/02/17", unica.getDia());
+		Assert.assertEquals("21:00", unica.getHora());
+
+	}
+
+	@Test
+	public void naoDeveCriarSessaoQuandoInicioMaiorQueFim() {
+		// Arrange
+		final LocalDate inicio = new LocalDate(2017, 2, 10);
+		final LocalDate fim = new LocalDate(2017, 2, 9);
+		final LocalTime horario = new LocalTime();
+		final List<Sessao> sessoesCriadas;
+		final Espetaculo espetaculo = new Espetaculo();
+		// Act
+		sessoesCriadas = espetaculo.criaSessoes(inicio, fim, horario,
+				Periodicidade.DIARIA);
+		// Assert
+		Assert.assertEquals(0, sessoesCriadas.size());
+	}
+	
+	
+
+	@Test
+	public void deveCriarSessaoQuandoInicioMenorQueFim() {
+		// Arrange
+		final LocalDate inicio = new LocalDate(2017, 2, 10);
+		final LocalDate fim = inicio.plusDays(3);
+		final LocalTime horario = new LocalTime();
+		final List<Sessao> sessoesCriadas;
+		final Espetaculo espetaculo = new Espetaculo();
+		// Act
+		sessoesCriadas = espetaculo.criaSessoes(inicio, fim, horario,
+				Periodicidade.DIARIA);
+		// Assert
+		Assert.assertEquals(4, sessoesCriadas.size());
+	}
+	
+	@Test
+	public void deveCriarSessaoDiariaQuandoInicioMenorQueFim() {
+		// Arrange
+		final LocalDate inicio = new LocalDate(2017, 2, 10);
+		final LocalDate fim = inicio.plusDays(3);
+		final LocalTime horario = new LocalTime();
+		final List<Sessao> sessoesCriadas;
+		final Espetaculo espetaculo = new Espetaculo();
+		// Act
+		sessoesCriadas = espetaculo.criaSessoes(inicio, fim, horario,
+				Periodicidade.DIARIA);
+		// Assert
+		Assert.assertEquals(4, sessoesCriadas.size());
+	}
+
 	private Sessao sessaoComIngressosSobrando(int quantidade) {
 		Sessao sessao = new Sessao();
 		sessao.setTotalIngressos(quantidade * 2);
@@ -80,5 +156,5 @@ public class EspetaculoTest {
 
 		return sessao;
 	}
-	
+
 }
