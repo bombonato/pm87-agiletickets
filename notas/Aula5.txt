@@ -1,0 +1,9 @@
+Aula5
+=====
+
+Devx - agile - A pratical Guide to seven agile methodologies - part 2: page 4
+- pensar no que um defeito no software pode causar
+- conforto, perda de dinheiro, vida
+- levanta sobre os mẽtodos XP, Scrum, Lean, FDD, AUP(RUP), Crystal, etc
+
+
