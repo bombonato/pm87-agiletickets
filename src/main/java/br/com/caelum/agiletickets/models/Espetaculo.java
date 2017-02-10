@@ -103,9 +103,9 @@ public class Espetaculo {
 		// ALUNO: Não apague esse metodo. Esse sim será usado no futuro! ;)
 		//return null;
 		final ArrayList<Sessao> lista = new ArrayList<Sessao>();
-		if (inicio.isBefore(fim)) {
-			int i = 0;
-			for (i=0;i<= Days.daysBetween(inicio, fim).getDays();i++){
+		if (inicio.isBefore(fim) || inicio.isEqual(fim)) {
+			//int i = 0;
+			for (int i=0; i<= Days.daysBetween(inicio, fim).getDays(); i++){
 				
 				Sessao sessao = new Sessao();
 				sessao.setInicio(inicio.toDateTime(horario));
@@ -115,7 +115,6 @@ public class Espetaculo {
 				sessao.setPreco(BigDecimal.valueOf(99.90));			
 				
 				lista.add(sessao);	
-	
 			}
 		
 		}
