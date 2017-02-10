@@ -2,6 +2,8 @@
 
 	<property file="build.properties" />
 
+	<property name="persistence" value="persistence.xml"
+
 	<!-- paths -->
 	<path id="lib.path.id">
 		<fileset dir="${lib.dir}" />
@@ -14,8 +16,8 @@
 		<pathelement location="${build.dir}" />
 	</path>
 
-	<!-- ================================= 
-          target: resolve              
+	<!-- =================================
+          target: resolve
          ================================= -->
 	<target name="resolve" description="--> retrieve dependencies with ivy">
 		<path id="ivy.lib.path">
@@ -32,7 +34,7 @@
 		</copy>
 	</target>
 
-	<!-- ================================= 
+	<!-- =================================
           target: compile
          ================================= -->
 	<target name="compile" depends="resolve" description="--> compile">
@@ -46,7 +48,7 @@
 		</copy>
 	</target>
 
-	<!-- ================================= 
+	<!-- =================================
 	      target: compile test
 	     ================================= -->
 	<target name="compile-test" depends="compile" description="--> compile test">
@@ -60,7 +62,7 @@
 		</copy>
 	</target>
 
-	<!-- ================================= 
+	<!-- =================================
           target: run tests
          ================================= -->
 	<target name="test" depends="compile-test" description="--> run all tests">
@@ -78,17 +80,20 @@
 		</junit>
 	</target>
 
-	<!-- ================================= 
+	<!-- =================================
           target: war
          ================================= -->
 	<target name="war" description="--> generate war file" depends="test">
+		<move file="${build.dir}/META-INF/${persistence}"
+			tofile="${build.dir}/META-INF/persistence.xml"
+
 		<war destfile="${output.dir}/${project.name}.war">
 			<zipfileset dir="${webapp.dir}" />
 		</war>
 	</target>
 
-	<!-- ================================= 
-          target: minify              
+	<!-- =================================
+          target: minify
          ================================= -->
 	<target name="minify" depends="resolve" description="minify js and css">
 		<property name="yuicompressor.jar" value="lib/minify/yuicompressor-2.3.6.jar" />
@@ -119,8 +124,8 @@
 		</java>
 	</target>
 
-	<!-- ================================= 
-          target: report              
+	<!-- =================================
+          target: report
          ================================= -->
 	<target name="report" depends="resolve" description="--> generates a report of dependencies">
 		<mkdir dir="${output.dir}/reports" />
